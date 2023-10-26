@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Creates a basic command interpreter"""
 import cmd
+import json
+import os
 from models import base_models
 from datetime import datetime
 from models import storage
