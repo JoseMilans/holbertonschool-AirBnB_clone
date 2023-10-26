@@ -7,11 +7,9 @@ from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for HBnB"""
-
-    models = ["BaseModel", "User", "State", "City",
-              "Amenity", "Place", "Review"]
-    prompt = '(hbnb) '
-
+    
+    prompt = '(hbnb)'
+    Doc_header = "(type help <topic>):"
     def emptyline(self):
         """Does nothing when it recieves an empty line."""
         pass
@@ -22,7 +20,5 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, *args):
         """Exits on EOF."""
+        print()
         return True
-if __name__ == '__main__':
-    
-    HBNBCommand().cmdloop()
