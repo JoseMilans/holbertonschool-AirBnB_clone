@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-import uuid
-from datetime import datetime
-from models import storage
 """
 BaseModel class for AirBnB project.
 Defines common attributes/methods for other classes.
 """
+import uuid
+from datetime import datetime
+from models import storage
 
 
 class BaseModel:
@@ -14,13 +14,13 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
-        """Constructor for BaseModel"""
+        """Initialises a new instance or sets attributes based on kwargs"""
         format = "%Y-%m-%dT%H:%M:%S.%f"
 
         if kwargs:
             # Update attrs if provided in kwargs
             for key, value in kwargs.items():
-                if key == 'created_at' or key == 'updated_at':
+                if key in ('created_at', 'updated_at'):
                     # Convert str to datetime object
                     value = datetime.strptime(value, format)
                 if key != '__class__':
@@ -34,18 +34,21 @@ class BaseModel:
             storage.new(self)
 
     def __str__(self):
-        """BaseModel instance string representation."""
+        """Returns BaseModel instance string representation."""
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """
-        Updates date and time of the instance and saves to file.
+        Updates date and time of the instance and saves to file storage
         """
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
-        """Returns a dictionary of the instance attributes."""
+        """
+        Returns a dictionary of the instance attributes,
+        with datetime objects converted to strings.
+        """
         # make a copy to not modify the original
         dict_copy = self.__dict__.copy()
         # add class name
