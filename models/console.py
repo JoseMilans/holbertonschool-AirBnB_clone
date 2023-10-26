@@ -2,6 +2,10 @@
 """Creates a basic command interpreter"""
 import cmd
 from models import base_models
+from datetime import datetime
+from models import storage
+from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -11,6 +15,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """Exit the interpreter"""
+        print()
         return True
 
     def do_quit(self, arg):
@@ -18,9 +23,16 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        """Do nothing when an empty line is entered"""
+        """Passing emptyline do nothing"""
         pass
-
+    if not line:
+            print("** class name missing **")
+    elif line not in self.classes:
+            print("** class doesn't exist **")
+    else:
+            new_item = eval(line)()
+            print(new_item.id)
+            new_item.save()
 
 if _name_ == '_main_':
     HBNBCommand().cmdloop()
