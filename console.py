@@ -13,7 +13,9 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """Does nothing when it recieves an empty line."""
         pass
-
+    def help_quit(self):
+        print ("Quit command to exit the program")
+    
     def do_quit(self, *args):
         """exits when typing quit."""
         return True
