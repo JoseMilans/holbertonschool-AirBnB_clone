@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""State module"""
+"""Module for State class"""
 from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """Create the state module"""
-
-    name = ""
+    """Defines attributes for the State class"""
+    pass
