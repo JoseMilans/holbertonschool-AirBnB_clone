@@ -4,7 +4,6 @@ FileStorage class for serialisation and deserialisation of instances.
 """
 import json
 import os
-BaseModel = None
 
 
 class FileStorage:
@@ -15,8 +14,13 @@ class FileStorage:
     __file_path = "file.json"  # path to json file
     __objects = {}  # dictionary to store objects
     CLASS_NAME_MAP = {
-        "BaseModel": "models.base_model.BaseModel"
-        # space to add more classes
+        "BaseModel": "models.base_model.BaseModel",
+        "User": "models.user.User",
+        "State": "models.state.State",
+        "City": "models.city.City",
+        "Place": "models.place.Place",
+        "Review": "models.review.Review",
+        "Amenity": "models.amenity.Amenity"
     }
 
     def all(self):
@@ -33,19 +37,15 @@ class FileStorage:
         with open(FileStorage.__file_path, 'w', encoding="utf-8") as f:
             dict_to_save = {key: obj.to_dict()
                             for key, obj in FileStorage.__objects.items()}
-            json.dump(dict_to_save, f)
+            json.dump(dict_to_save, f, indent=4)
 
     def reload(self):
         """Deserialise the JSON file to __objects, if the file exists."""
-        global BaseModel
-        if BaseModel is None:
-            # importing BaseModel only if not already loaded
-            from models.base_model import BaseModel
         if os.path.exists(FileStorage.__file_path):
             # load the serialised objects from the file
             with open(FileStorage.__file_path, 'r', encoding="utf-8") as f:
-                objs = json.load(f)
-                for key, value in objs.items():
+                seri_objs = json.load(f)
+                for key, value in seri_objs.items():
                     class_name = value["__class__"]
                     # get the module and class path from mapping
                     cls_path = FileStorage.CLASS_NAME_MAP.get(class_name)
