@@ -7,9 +7,7 @@ from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for HBnB"""
-
-    models = ["BaseModel", "User", "State", "City",
-              "Amenity", "Place", "Review"]
+    
     prompt = '(hbnb) '
 
     def emptyline(self):
