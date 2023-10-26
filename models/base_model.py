@@ -12,15 +12,10 @@ class BaseModel:
     """
     BaseModel class that defines common attributes/methods for other classes.
     """
-    _first_object = None
 
     def __init__(self, *args, **kwargs):
         """Constructor for BaseModel"""
         format = "%Y-%m-%dT%H:%M:%S.%f"
-
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
 
         if kwargs:
             # Update attrs if provided in kwargs
@@ -33,6 +28,9 @@ class BaseModel:
                     setattr(self, key, value)
         else:
             # if no kwargs provided, use default values and store the new obj
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
             storage.new(self)
 
     def __str__(self):
