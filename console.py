@@ -22,6 +22,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, *args):
         """Exits on EOF."""
+        print()
         return True
 if __name__ == '__main__':
     
