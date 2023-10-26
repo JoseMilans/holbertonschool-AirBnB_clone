@@ -1,6 +1,10 @@
 #!/usr/bin/python3
+"""City module"""
 from models.base_model import BaseModel
-class Place:
-  """
-  class place
-  """
+
+
+class City(BaseModel):
+    """Create the city module"""
+
+    state_id = ""
+    name = ""
