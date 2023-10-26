@@ -7,22 +7,21 @@ from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for HBnB"""
-    
+
+    models = ["BaseModel", "User", "State", "City",
+              "Amenity", "Place", "Review"]
     prompt = '(hbnb) '
 
     def emptyline(self):
         """Does nothing when it recieves an empty line."""
         pass
-    def help_quit(self):
-        print ("Quit command to exit the program")
-    
+
     def do_quit(self, *args):
         """exits when typing quit."""
         return True
 
     def do_EOF(self, *args):
         """Exits on EOF."""
-        print()
         return True
 if __name__ == '__main__':
     
