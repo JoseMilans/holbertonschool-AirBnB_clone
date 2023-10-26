@@ -29,7 +29,7 @@ class FileStorage:
 
     def new(self, obj):
         """Add the object to the dictionary with a formatted key"""
-        key = f"{type(obj)._name_}.{obj.id}"
+        key = f"{type(obj).__name__}.{obj.id}"
         FileStorage.__objects[key] = obj
 
     def save(self):
@@ -46,14 +46,14 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r', encoding="utf-8") as f:
                 seri_objs = json.load(f)
                 for key, value in seri_objs.items():
-                    class_name = value["_class_"]
+                    class_name = value["__class__"]
                     # get the module and class path from mapping
                     cls_path = FileStorage.CLASS_NAME_MAP.get(class_name)
                     if cls_path:
                         # extract module and class names from the path
                         module_name, class_name = cls_path.rsplit('.', 1)
                         # import the module and extract the class
-                        module = _import_(module_name, fromlist=[class_name])
+                        module = __import__(module_name, fromlist=[class_name])
                         cls = getattr(module, class_name)
                         # create new instance of the class with serialised data
                         instance = cls(**value)
