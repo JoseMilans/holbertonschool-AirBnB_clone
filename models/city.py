@@ -1,10 +1,8 @@
 #!/usr/bin/python3
-"""City module"""
+"""Module for City class"""
 from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    """City"""
-
-    state_id = ""
-    name = ""
+    """Defines attributes for the City class"""
+    pass
