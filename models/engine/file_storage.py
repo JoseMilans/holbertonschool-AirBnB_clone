@@ -25,30 +25,31 @@ class FileStorage:
 
     def all(self):
         """Return the dictionary of objects"""
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
-        """Add the object to the dictionary with a formatted key"""
-        key = f"{type(obj).__name__}.{obj.id}"
-        FileStorage.__objects[key] = obj
+        """Sets an object in the objects dictionary with a formatted key"""
+        key = f"{obj.__class__.__name__}.{obj.id}"
+        self.__objects[key] = obj
 
     def save(self):
         """Serialise the __objects to JSON file."""
-        with open(FileStorage.__file_path, 'w', encoding="utf-8") as f:
-            dict_to_save = {key: obj.to_dict()
-                            for key, obj in FileStorage.__objects.items()}
+        dict_to_save = {}
+        with open(self.__file_path, 'w', encoding='utf-8') as f:
+            for key, obj in self.__objects.items():
+                dict_to_save[key] = obj.to_dict()
             json.dump(dict_to_save, f, indent=4)
 
     def reload(self):
         """Deserialise the JSON file to __objects, if the file exists."""
-        if os.path.exists(FileStorage.__file_path):
+        if os.path.exists(self.__file_path):
             # load the serialised objects from the file
-            with open(FileStorage.__file_path, 'r', encoding="utf-8") as f:
+            with open(self.__file_path, 'r', encoding='utf-8') as f:
                 seri_objs = json.load(f)
                 for key, value in seri_objs.items():
                     class_name = value["__class__"]
                     # get the module and class path from mapping
-                    cls_path = FileStorage.CLASS_NAME_MAP.get(class_name)
+                    cls_path = self.CLASS_NAME_MAP.get(class_name)
                     if cls_path:
                         # extract module and class names from the path
                         module_name, class_name = cls_path.rsplit('.', 1)
@@ -57,4 +58,4 @@ class FileStorage:
                         cls = getattr(module, class_name)
                         # create new instance of the class with serialised data
                         instance = cls(**value)
-                        FileStorage.__objects[key] = instance
+                        self.__objects[key] = instance
