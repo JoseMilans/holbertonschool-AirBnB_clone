@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module for User class"""
 
+import models
 from models.base_model import BaseModel
 
 
