@@ -42,7 +42,7 @@ class BaseModel:
         Updates date and time of the instance and saves to file storage
         """
         self.updated_at = datetime.now()
-        models.storage.save()
+        storage.save()
 
     def to_dict(self):
         """
