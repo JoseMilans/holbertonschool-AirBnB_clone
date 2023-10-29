@@ -19,7 +19,7 @@ VALID_MODELS = {
     "City": City,
     "Amenity": Amenity,
     "Place": Place,
-    "Review": Review
+    "Review": Review,
 }
 
 
