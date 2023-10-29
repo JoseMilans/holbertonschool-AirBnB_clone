@@ -86,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
                 del storage.all()[key]
                 storage.save()
 
-   def do_all(self, arg):
+    def do_all(self, arg):
         """Displays all instances of a class"""
         args = arg.split()
         obj_list = []
@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
                 obj_list.append(str(obj))
         else:
             for key, instance in storage.all().items():
-                if instance.__class__.__name__ == args[0]:
+                if instance._class.__name_ == args[0]:
                     obj_list.append(str(instance))
         print(obj_list)
 
