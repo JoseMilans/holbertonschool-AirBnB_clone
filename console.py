@@ -87,18 +87,17 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
 
    def do_all(self, arg):
-    """Displays all instances of a class"""
-    args = arg.split()
-    obj_list = []
-    if not args:
-        print("** class name missing **")
-    elif args[0] not in VALID_MODELS:
-        print("** class doesn't exist **")
-    else:
-        for key, instance in storage.all().items():
-            if instance.__class__.__name__ == args[0]:
-                obj_list.append(str(instance))
-        print(obj_list)
+        """Displays all instances of a class"""
+        args = arg.split()
+        obj_list = []
+        if not args or args[0] not in VALID_MODELS:
+            for obj in storage.all().values():
+                obj_list.append(str(obj))
+        else:
+            for key, instance in storage.all().items():
+                if instance._class.__name_ == args[0]:
+                    obj_list.append(str(instance))
+        print(obj_list)
 
     def do_update(self, arg):
         """Updates attributes of an instance"""
