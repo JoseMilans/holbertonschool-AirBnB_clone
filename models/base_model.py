@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 BaseModel class for AirBnB project.
-Defines common attributes/methods for other classes.
+Console module
 """
 import uuid
 from datetime import datetime
@@ -11,6 +11,7 @@ from models import storage
 class BaseModel:
     """
     BaseModel class that defines common attributes/methods for other classes.
+    It's the parent of other classes.
     """
 
     def __init__(self, *args, **kwargs):

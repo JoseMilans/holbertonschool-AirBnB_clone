@@ -47,7 +47,7 @@ class FileStorage:
             with open(self.__file_path, 'r', encoding='utf-8') as f:
                 seri_objs = json.load(f)
                 for key, value in seri_objs.items():
-                    class_name = value["__class__"]
+                    class_name = value['__class__']
                     # get the module and class path from mapping
                     cls_path = self.CLASS_NAME_MAP.get(class_name)
                     if cls_path:
