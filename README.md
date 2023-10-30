@@ -2,7 +2,7 @@
 
 ## Table of Contents
 1. [AirBnB Clone Project](#airbnb-clone-project)
-2. [Command Interpreter Description](#command-interpreter-description)
+2. [Command Interpreter Description and Overview Diagram](#command-interpreter-description-and-overview-diagram)
 3. [How to start it](#how-to-start-it)
 4. [File Descriptions](#file-descriptions)
 5. [console.py](#consolepy)
@@ -11,7 +11,7 @@
 8. [AUTHORS](#authors)
 
 ## AirBnB Clone Project
-
+Click [here](https://www.mermaidchart.com/raw/acf63e3e-2b34-4c6b-94e2-6449eee27b0e?version=v0.1&theme=light&format=svg) to check our program's flowchart.
 This repository contains the implementation of a simplified AirBnB web application. This project serves as a learning platform for the basics of web development, particularly focusing on the backend aspects using Python.
 
 ## Command Interpreter Description
