@@ -19,7 +19,7 @@ VALID_MODELS = {
     "City": City,
     "Amenity": Amenity,
     "Place": Place,
-    "Review": Review
+    "Review": Review,
 }
 
 
@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
                 obj_list.append(str(obj))
         else:
             for key, instance in storage.all().items():
-                if instance.__class__.__name__ == args[0]:
+                 if instance.__class__.__name__ == args[0]:
                     obj_list.append(str(instance))
         print(obj_list)
 

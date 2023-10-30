@@ -20,7 +20,7 @@ class FileStorage:
         "City": "models.city.City",
         "Place": "models.place.Place",
         "Review": "models.review.Review",
-        "Amenity": "models.amenity.Amenity"
+        "Amenity": "models.amenity.Amenity",
     }
 
     def all(self):
