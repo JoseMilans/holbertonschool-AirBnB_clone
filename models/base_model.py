@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
 BaseModel class for AirBnB project.
-Console module
 """
 import uuid
 from datetime import datetime
@@ -58,7 +57,3 @@ class BaseModel:
         dict_copy['created_at'] = dict_copy['created_at'].isoformat()
         dict_copy['updated_at'] = dict_copy['updated_at'].isoformat()
         return dict_copy
-
-    def add_to_storage(self):
-        """Manually add the object to storage"""
-        storage.new(self)
